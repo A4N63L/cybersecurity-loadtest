@@ -1,0 +1,120 @@
+{
+  "campaign": "20261020T040045Z",
+  "complete": true,
+  "services": {
+    "frontend": {
+      "highest_repeated_stable_stage": {
+        "requested_rps": 19.0,
+        "completed_rps": 18.937152,
+        "http_completed": 190,
+        "latency_ms": {
+          "p50": 1.870667,
+          "p95": 2.412038,
+          "p99": 24.901263
+        }
+      },
+      "resources": {
+        "max_container_cpu_percent_sampled": 44.55,
+        "max_container_memory_mib_sampled": 32.019999504089355,
+        "max_host_cpu_percent_sampled": 42.365,
+        "min_host_available_gib_sampled": 5.276725769042969,
+        "observer_b_checks": 24,
+        "observer_b_http_200": 24,
+        "max_observer_b_latency_ms": 74.00398400022823,
+        "max_restart_count_observed": 0
+      },
+      "protected_comparison": [
+        {
+          "http_completed": 64,
+          "timeouts": 18,
+          "connection_errors": {
+            "refused": 12
+          },
+          "protection": {
+            "jail_active": true,
+            "source_temporarily_exempt": false,
+            "source_banned": true,
+            "ban_logged_this_stage": true,
+            "blocked_packets": 31
+          }
+        }
+      ]
+    },
+    "backend": {
+      "highest_repeated_stable_stage": {
+        "requested_rps": 19.0,
+        "completed_rps": 18.840816,
+        "http_completed": 189,
+        "latency_ms": {
+          "p50": 3.496012,
+          "p95": 4.375567,
+          "p99": 5.74676
+        }
+      },
+      "resources": {
+        "max_container_cpu_percent_sampled": 49.33,
+        "max_container_memory_mib_sampled": 105.5,
+        "max_host_cpu_percent_sampled": 40.975,
+        "min_host_available_gib_sampled": 5.248271942138672,
+        "observer_b_checks": 24,
+        "observer_b_http_200": 24,
+        "max_observer_b_latency_ms": 75.131206000151,
+        "max_restart_count_observed": 0
+      },
+      "protected_comparison": [
+        {
+          "http_completed": 62,
+          "timeouts": 20,
+          "connection_errors": {
+            "refused": 12
+          },
+          "protection": {
+            "jail_active": true,
+            "source_temporarily_exempt": false,
+            "source_banned": true,
+            "ban_logged_this_stage": true,
+            "blocked_packets": 32
+          }
+        }
+      ]
+    },
+    "keycloak": {
+      "highest_repeated_stable_stage": {
+        "requested_rps": 19.0,
+        "completed_rps": 18.9372,
+        "http_completed": 190,
+        "latency_ms": {
+          "p50": 5.213045,
+          "p95": 6.181507,
+          "p99": 9.21436
+        }
+      },
+      "resources": {
+        "max_container_cpu_percent_sampled": 50.66,
+        "max_container_memory_mib_sampled": 569.0999994277954,
+        "max_host_cpu_percent_sampled": 41.479,
+        "min_host_available_gib_sampled": 5.253894805908203,
+        "observer_b_checks": 24,
+        "observer_b_http_200": 24,
+        "max_observer_b_latency_ms": 85.87708699997165,
+        "max_restart_count_observed": 0
+      },
+      "protected_comparison": [
+        {
+          "http_completed": 70,
+          "timeouts": 18,
+          "connection_errors": {
+            "refused": 11
+          },
+          "protection": {
+            "jail_active": true,
+            "source_temporarily_exempt": false,
+            "source_banned": true,
+            "ban_logged_this_stage": true,
+            "blocked_packets": 29
+          }
+        }
+      ]
+    }
+  }
+}

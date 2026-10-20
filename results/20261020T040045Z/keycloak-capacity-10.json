@@ -1,0 +1,338 @@
+{
+  "started_at_utc": "2026-10-20T04:05:00.900716+00:00",
+  "configuration": {
+    "host": "keycloak",
+    "port": 8080,
+    "scheme": "http",
+    "path": "/realms/games-lab/.well-known/openid-configuration",
+    "duration_s": 10.0,
+    "concurrency": 3,
+    "rps_limit_global": 10.0,
+    "timeout_s": 1,
+    "expected_status": 200
+  },
+  "elapsed_s": 10.018119,
+  "interrupted": false,
+  "attempted": 100,
+  "http_completed": 100,
+  "expected_responses": 100,
+  "http_statuses": {
+    "200": 100
+  },
+  "timeouts": 0,
+  "connection_errors": {},
+  "protocol_errors": {},
+  "rps_completed": 9.981914,
+  "rps_attempted": 9.981914,
+  "http_latency_ms": {
+    "p50": 6.223704,
+    "p95": 8.338736,
+    "p99": 8.663723
+  },
+  "latency_population": "completed HTTP responses, including non-expected HTTP statuses",
+  "sensitive_data_saved": false,
+  "service": "keycloak",
+  "mode": "capacity",
+  "protection": {
+    "jail_active": true,
+    "source_temporarily_exempt": true,
+    "source_banned": false,
+    "ban_logged_this_stage": false,
+    "blocked_packets": 0
+  },
+  "resource_samples": [
+    {
+      "at_utc": "2026-10-20T04:05:02.399460+00:00",
+      "observer_b": {
+        "status": 200,
+        "latency_ms": 19.996349999928498,
+        "error": null
+      },
+      "host_cpu_percent": 32.855,
+      "host_available_bytes": 5654810624,
+      "containers": {
+        "ciber-p1-games-frontend-1": {
+          "cpu_percent": 0.11,
+          "memory_bytes": 28070379
+        },
+        "ciber-p1-games-backend-1": {
+          "cpu_percent": 0.25,
+          "memory_bytes": 90345308
+        },
+        "ciber-p1-games-keycloak-1": {
+          "cpu_percent": 10.23,
+          "memory_bytes": 584266547
+        },
+        "ciber-p1-games-openldap-1": {
+          "cpu_percent": 0.1,
+          "memory_bytes": 21873295
+        },
+        "ciber-p1-games-postgres-1": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 30597447
+        },
+        "games-loadtest-a": {
+          "cpu_percent": 1.96,
+          "memory_bytes": 22796042
+        },
+        "games-loadtest-b": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 6205472
+        }
+      },
+      "states": {
+        "ciber-p1-games-frontend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-backend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-keycloak-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-openldap-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-postgres-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        }
+      }
+    },
+    {
+      "at_utc": "2026-10-20T04:05:05.470833+00:00",
+      "observer_b": {
+        "status": 200,
+        "latency_ms": 68.23048399928666,
+        "error": null
+      },
+      "host_cpu_percent": 36.536,
+      "host_available_bytes": 5683232768,
+      "containers": {
+        "ciber-p1-games-frontend-1": {
+          "cpu_percent": 0.11,
+          "memory_bytes": 28070379
+        },
+        "ciber-p1-games-backend-1": {
+          "cpu_percent": 52.67,
+          "memory_bytes": 102571704
+        },
+        "ciber-p1-games-keycloak-1": {
+          "cpu_percent": 17.13,
+          "memory_bytes": 594018304
+        },
+        "ciber-p1-games-openldap-1": {
+          "cpu_percent": 0.13,
+          "memory_bytes": 21873295
+        },
+        "ciber-p1-games-postgres-1": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 30597447
+        },
+        "games-loadtest-a": {
+          "cpu_percent": 1.9,
+          "memory_bytes": 22806528
+        },
+        "games-loadtest-b": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 6229590
+        }
+      },
+      "states": {
+        "ciber-p1-games-frontend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-backend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-keycloak-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-openldap-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-postgres-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        }
+      }
+    },
+    {
+      "at_utc": "2026-10-20T04:05:08.761384+00:00",
+      "observer_b": {
+        "status": 200,
+        "latency_ms": 24.598537999736436,
+        "error": null
+      },
+      "host_cpu_percent": 32.254,
+      "host_available_bytes": 5672009728,
+      "containers": {
+        "ciber-p1-games-frontend-1": {
+          "cpu_percent": 0.12,
+          "memory_bytes": 28070379
+        },
+        "ciber-p1-games-backend-1": {
+          "cpu_percent": 0.26,
+          "memory_bytes": 90324336
+        },
+        "ciber-p1-games-keycloak-1": {
+          "cpu_percent": 36.11,
+          "memory_bytes": 585210265
+        },
+        "ciber-p1-games-openldap-1": {
+          "cpu_percent": 0.08,
+          "memory_bytes": 21873295
+        },
+        "ciber-p1-games-postgres-1": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 30597447
+        },
+        "games-loadtest-a": {
+          "cpu_percent": 1.88,
+          "memory_bytes": 23582474
+        },
+        "games-loadtest-b": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 6258950
+        }
+      },
+      "states": {
+        "ciber-p1-games-frontend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-backend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-keycloak-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-openldap-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-postgres-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        }
+      }
+    },
+    {
+      "at_utc": "2026-10-20T04:05:12.033212+00:00",
+      "observer_b": {
+        "status": 200,
+        "latency_ms": 22.17897999980778,
+        "error": null
+      },
+      "host_cpu_percent": 31.149,
+      "host_available_bytes": 5709111296,
+      "containers": {
+        "ciber-p1-games-frontend-1": {
+          "cpu_percent": 0.1,
+          "memory_bytes": 28070379
+        },
+        "ciber-p1-games-backend-1": {
+          "cpu_percent": 0.26,
+          "memory_bytes": 90324336
+        },
+        "ciber-p1-games-keycloak-1": {
+          "cpu_percent": 0.41,
+          "memory_bytes": 585524838
+        },
+        "ciber-p1-games-openldap-1": {
+          "cpu_percent": 11.47,
+          "memory_bytes": 22062039
+        },
+        "ciber-p1-games-postgres-1": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 30597447
+        },
+        "games-loadtest-a": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 5307891
+        },
+        "games-loadtest-b": {
+          "cpu_percent": 0.0,
+          "memory_bytes": 6287261
+        }
+      },
+      "states": {
+        "ciber-p1-games-frontend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-backend-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-keycloak-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-openldap-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        },
+        "ciber-p1-games-postgres-1": {
+          "status": "running",
+          "health": "healthy",
+          "restarts": 0,
+          "oom_killed": false
+        }
+      }
+    }
+  ],
+  "monitor_problems": [],
+  "stable_without_ban": true,
+  "stability_failures": [],
+  "demonstrated_ban": false,
+  "protection_restored": true
+}

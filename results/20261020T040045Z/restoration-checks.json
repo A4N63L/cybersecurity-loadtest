@@ -1,0 +1,10 @@
+{
+  "checked_at_utc": "2026-10-20T04:10:59.429730+00:00",
+  "http_requests_sent": 0,
+  "control_only_test_net_ip": "192.0.2.254",
+  "exception_finally_restored": true,
+  "sigkill_watchdog_restored": true,
+  "watchdog_observed_after_sigkill_s": 25.358,
+  "all_jails_active": true,
+  "protection_matches_initial": true
+}

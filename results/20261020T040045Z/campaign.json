@@ -1,0 +1,95 @@
+{
+  "started_at_utc": "2026-10-20T04:00:45.943460+00:00",
+  "docker_host": "unix:///tmp/opencode/games-docker.sock",
+  "network": "ciber-p1-games_lab",
+  "protocol_sha256": "bd9ef3e282301f50b391581e8b5e992a4a1b63a720b9fa76eb4470b4d1d16093",
+  "client_image": "python:3.12-slim",
+  "stages": [
+    "frontend-protected_baseline-2.json",
+    "frontend-capacity-5.json",
+    "frontend-capacity-10.json",
+    "frontend-capacity-19.json",
+    "frontend-capacity_repeat-19.json",
+    "frontend-protected_comparison-19.json",
+    "backend-protected_baseline-2.json",
+    "backend-capacity-5.json",
+    "backend-capacity-10.json",
+    "backend-capacity-19.json",
+    "backend-capacity_repeat-19.json",
+    "backend-protected_comparison-19.json",
+    "keycloak-protected_baseline-2.json",
+    "keycloak-capacity-5.json",
+    "keycloak-capacity-10.json",
+    "keycloak-capacity-19.json",
+    "keycloak-capacity_repeat-19.json",
+    "keycloak-protected_comparison-19.json"
+  ],
+  "complete": true,
+  "initial_protection": {
+    "frontend": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "backend": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "keycloak": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "openldap": {
+      "jail": "ldaps-connections",
+      "active": true
+    }
+  },
+  "client_image_id": "sha256:df18428df8a0f9189c84e7424d214b4c50092af1f9dca5842a00c41c39bda316",
+  "client_ips": {
+    "games-loadtest-a": "172.29.0.7",
+    "games-loadtest-b": "172.29.0.8"
+  },
+  "final_protection": {
+    "frontend": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "backend": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "keycloak": {
+      "jail": "http-flood",
+      "active": true,
+      "ignoreip": [
+        "127.0.0.0/8",
+        "::1/128"
+      ]
+    },
+    "openldap": {
+      "jail": "ldaps-connections",
+      "active": true
+    }
+  },
+  "protection_matches_initial": true,
+  "ended_at_utc": "2026-10-20T04:06:10.503906+00:00"
+}
