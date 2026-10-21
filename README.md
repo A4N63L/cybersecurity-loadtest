@@ -5,8 +5,51 @@ Conserva el limitador compartido, trabajadores, plazo fijo y evento de parada;
 añade argumentos, métricas y separación de errores. Usa solo la biblioteca estándar
 de **Python 3.10+**. No necesita pip ni acceso a credenciales.
 
-Proyecto local independiente, preparado para Git, sin remoto ni push.
+Repositorio publicado: https://github.com/A4N63L/cybersecurity-loadtest.
 El código y los resultados saneados de `results/` son versionables.
+
+## Contraste con el original y ejecución previa pendiente
+
+**No se ha encontrado evidencia verificable de una ejecución del script original
+antes de modificarlo. Este requisito del maestro queda PENDIENTE de acreditar.**
+Leer el ZIP, comparar código o ejecutar las comprobaciones del generador adaptado
+no demuestra esa ejecución original ni el orden exigido.
+
+La campaña conservada en `results/20261020T040045Z/` corresponde a la **versión
+adaptada**, entre 04:00:45 y 04:06:10 UTC del 20 de octubre de 2026. Su campo
+`complete=true` significa que terminó esa campaña, no que se haya acreditado la
+ejecución previa del original. No se añaden resultados del original ni fechas
+retrospectivas. El contraste completo está en
+[CONTRASTE-ENUNCIADO.md](https://github.com/A4N63L/cybersecurity-backend/blob/main/CONTRASTE-ENUNCIADO.md).
+
+| Aspecto | `attacker/flood.py` original del ZIP | Adaptación entregada |
+|---|---|---|
+| Destinos | `victim-protected` y `victim-unprotected`, secuenciales, HTTP/80 y `/` fijos | Un host y puerto posicionales; esquema y ruta por argumentos |
+| Carga | Variables `DURATION`, `CONCURRENCY`, `REQUESTS_PER_SECOND`; valores autónomos 20 s / 40 / 50 RPS; máximos 300 s / 500 / 500 RPS | CLI; valores por defecto 10 s / 1 / 2 RPS; límites de esta etapa 10 s / 4 / 20 RPS |
+| Límite de tasa | Compartido entre workers de cada destino | Compartido entre todos los workers del único destino, sin recuperar retrasos con ráfagas |
+| Transporte | `urllib.request`, GET y timeout fijo 2 s; seguimiento normal de redirecciones | `http.client`, HTTP/HTTPS, timeout configurable; sin seguir redirecciones, cierre explícito y descarte acotado del cuerpo |
+| Errores | Cuenta estados; agrupa timeout/conexión como `000` y resume no-200 como fallos | Estados HTTP, timeouts, errores de conexión y protocolo separados |
+| Resultados | Totales y porcentaje no-200; sin RPS alcanzado ni percentiles | JSON saneado, completadas, RPS real y p50/p95/p99 |
+| Interrupción | Ctrl+C y evento de parada | SIGINT/SIGTERM, parada de nuevas peticiones y JSON parcial |
+
+Se mantienen del original el patrón de pool de trabajadores, plazo fijo, evento
+de parada y limitador global. `run_campaign.py` añade la observación de recursos,
+el cliente B y las excepciones temporales de Fail2Ban; no forma parte del original.
+
+**Subsanación mínima, todavía no realizada:** ejecutar una copia intacta del
+original en un entorno donde ambos nombres fijos respondan en el puerto 80,
+registrando hash, comando, fecha y stdout. Puede usar sus variables de entorno
+para una ejecución breve sin cambiar el archivo:
+
+```bash
+# Propuesta pendiente, NO ejecutada; requiere los dos destinos del original.
+DURATION=10 CONCURRENCY=1 REQUESTS_PER_SECOND=2 python3 /ruta/a/attacker/flood.py
+```
+
+Esa ejecución futura no probará que ocurrió antes de la adaptación ya entregada.
+Si se exige acreditar el orden completo, habrá que realizar una nueva secuencia
+documentada original → adaptación y declararla como subsanación posterior.
+No se reconstruyó ni ejecutó el laboratorio del ZIP en esta revisión.
 
 ## Archivos
 
@@ -21,6 +64,9 @@ El código y los resultados saneados de `results/` son versionables.
 ## Instalación y ejecución individual
 
 Desde esta carpeta:
+
+El comando individual siguiente es un ejemplo de uso; no es el registro de una
+ejecución del original ni de la campaña publicada.
 
 ```bash
 python3 --version
@@ -82,6 +128,31 @@ B reserva la cuarta conexión y un presupuesto de 1 RPS, realizando sondeos como
 cada 2 s. El tráfico de ambos queda dentro de 20 RPS/4 peticiones simultáneas.
 Los healthchecks preexistentes del lab no se cambian y son tráfico adicional de fondo.
 
+### Comandos efectivamente utilizados para los resultados publicados
+
+Desde `videojuegos-loadtest`, durante la etapa de mediciones (no ejecutados de
+nuevo en este contraste documental):
+
+```bash
+docker --host unix:///tmp/opencode/games-docker.sock pull python:3.12-slim
+python3 run_campaign.py
+python3 render_results.py results/20261020T040045Z
+python3 check_restoration.py results/20261020T040045Z
+```
+
+El controlador lanzó dentro de A el generador **adaptado** con argumentos como:
+
+```bash
+python3 /work/flood.py frontend 4200 --path / --duration 10 --concurrency 3 --rps 19
+python3 /work/flood.py backend 8000 --path /health --duration 10 --concurrency 3 --rps 19
+python3 /work/flood.py keycloak 8080 --path /realms/games-lab/.well-known/openid-configuration --duration 10 --concurrency 3 --rps 19
+```
+
+Son las invocaciones subyacentes del controlador, no órdenes adicionales ejecutadas
+manualmente. HTTP y timeout 1 s fueron los valores por defecto. Los JSON de cada
+escalón conservan destino, ruta, duración, concurrencia, RPS solicitado, tiempo real
+y resultados; `campaign.json` conserva el orden, las IP y el estado de protección.
+
 ### Estado de Fail2Ban
 
 La campaña **no detiene ninguna jail**. Solo añade la IP exacta de A a `ignoreip`
@@ -132,6 +203,18 @@ Las tres rutas pasaron 19 RPS y su repetición sin veto. La conclusión es
 **mayor carga estable observada dentro del límite probado**, no capacidad máxima.
 Consulta las tablas y muestras reales enlazadas arriba para RPS, percentiles,
 errores, recursos, estado de protección y observador B.
+
+Resultados de la **repetición**, con excepción temporal solo para A y jail activa:
+
+| Servicio | Duración de emisión | Workers A | RPS solicitado / alcanzado | HTTP 200 completadas | p50 / p95 / p99 (ms) | Errores |
+|---|---|---|---|---|---|---|
+| Frontend | 10 s | 3 | 19 / 18,937 | 190 | 1,871 / 2,412 / 24,901 | 0 |
+| Backend | 10 s | 3 | 19 / 18,841 | 189 | 3,496 / 4,376 / 5,747 | 0 |
+| Keycloak | 10 s | 3 | 19 / 18,937 | 190 | 5,213 / 6,182 / 9,214 | 0 |
+
+El RPS alcanzado incluye el tiempo real de emisión y drenaje; por eso no tiene
+que ser exactamente 19. Son observaciones breves de esas rutas públicas: no se
+midió capacidad máxima ni carga de autenticación, LDAP o escritura de juegos.
 
 ### Bloqueo frente a caída
 
