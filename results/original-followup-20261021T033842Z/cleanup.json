@@ -1,0 +1,16 @@
+{
+  "at_utc": "2026-10-21T03:42:14.063620+00:00",
+  "containers": {
+    "games-original-20261021t033842z-adapted": true,
+    "games-original-20261021t033842z-attacker": true,
+    "games-original-20261021t033842z-unprotected": true,
+    "games-original-20261021t033842z-protected": true
+  },
+  "images": {
+    "games-original-unprotected:20261021t033842z": true,
+    "games-original-protected:20261021t033842z": true
+  },
+  "network_removed": true,
+  "own_temporary_build_directory_removed": true,
+  "global_prune_used": false
+}

@@ -1,0 +1,60 @@
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-frontend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-backend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-keycloak-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-openldap-1 fail2ban-client status ldaps-connections
+docker --host unix:///tmp/opencode/games-docker.sock network ls -q
+docker --host unix:///tmp/opencode/games-docker.sock network inspect 4f8973814c18 67d0b3bd703f 03b9401ef577
+ip -j route show table all
+docker --host unix:///tmp/opencode/games-docker.sock compose -p games-original-20261021t033842z --project-directory /home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/results/original-followup-20261021T033842Z -f /home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/results/original-followup-20261021T033842Z/original.build.compose.json --progress plain build victim-protected
+docker --host unix:///tmp/opencode/games-docker.sock compose -p games-original-20261021t033842z --project-directory /home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/results/original-followup-20261021T033842Z -f /home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/results/original-followup-20261021T033842Z/original.build.compose.json --progress plain build victim-unprotected
+docker --host unix:///tmp/opencode/games-docker.sock network create --driver bridge --internal --subnet 172.30.240.0/24 games-original-20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock run -d --name games-original-20261021t033842z-protected --network games-original-20261021t033842z --network-alias victim-protected --hostname victim-protected --ip 172.30.240.10 --memory 256m --cpus 1 --pids-limit 64 --cap-add NET_ADMIN --cap-add NET_RAW games-original-protected:20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock run -d --name games-original-20261021t033842z-unprotected --network games-original-20261021t033842z --network-alias victim-unprotected --hostname victim-unprotected --ip 172.30.240.11 --memory 96m --cpus .5 --pids-limit 64 games-original-unprotected:20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock run -d --name games-original-20261021t033842z-attacker --network games-original-20261021t033842z --network-alias attacker --hostname attacker --ip 172.30.240.20 --memory 128m --cpus .5 --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges --read-only --mount type=bind,source=/home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/reference/attacker/flood.py,target=/flood.py,readonly python:3.12-slim python3 -c 'import time; time.sleep(600)'
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-attacker python3 -c 'import urllib.request; print(urllib.request.urlopen('"'"'http://'"'"'+__import__('"'"'sys'"'"').argv[1]+'"'"'/'"'"',timeout=2).status)' victim-protected
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-attacker python3 -c 'import urllib.request; print(urllib.request.urlopen('"'"'http://'"'"'+__import__('"'"'sys'"'"').argv[1]+'"'"'/'"'"',timeout=2).status)' victim-unprotected
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-attacker python3 --version
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected python3 -c 'from pathlib import Path; print(Path("/var/log/fail2ban.log").read_text())'
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected python3 -c 'from pathlib import Path; print(Path("/var/log/nginx/access.log").read_text())'
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected iptables -S
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected iptables -nvxL f2b-http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-unprotected wget -q --spider http://victim-protected/
+docker --host unix:///tmp/opencode/games-docker.sock exec -e DURATION=10 -e CONCURRENCY=3 -e REQUESTS_PER_SECOND=20 games-original-20261021t033842z-attacker python3 /flood.py
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected python3 -c 'from pathlib import Path; print(Path("/var/log/fail2ban.log").read_text())'
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected python3 -c 'from pathlib import Path; print(Path("/var/log/nginx/access.log").read_text())'
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected iptables -S
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-protected iptables -nvxL f2b-http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-unprotected wget -q --spider http://victim-protected/
+docker --host unix:///tmp/opencode/games-docker.sock run -d --name games-original-20261021t033842z-adapted --network ciber-p1-games_lab --memory 128m --cpus .5 --pids-limit 32 --cap-drop ALL --security-opt no-new-privileges --read-only --mount type=bind,source=/home/mint/Documentos/Ciberseguridad/videojuegos-loadtest/flood.py,target=/work/flood.py,readonly python:3.12-slim python3 -c 'import time; time.sleep(120)'
+docker --host unix:///tmp/opencode/games-docker.sock inspect games-original-20261021t033842z-adapted --format '{{(index .NetworkSettings.Networks "ciber-p1-games_lab").IPAddress}}'
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-frontend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec games-original-20261021t033842z-adapted python3 /work/flood.py frontend 4200 --scheme http --path / --duration 5 --concurrency 1 --rps 2 --timeout 1
+docker --host unix:///tmp/opencode/games-docker.sock rm -f games-original-20261021t033842z-adapted
+docker --host unix:///tmp/opencode/games-docker.sock rm -f games-original-20261021t033842z-attacker
+docker --host unix:///tmp/opencode/games-docker.sock rm -f games-original-20261021t033842z-unprotected
+docker --host unix:///tmp/opencode/games-docker.sock rm -f games-original-20261021t033842z-protected
+docker --host unix:///tmp/opencode/games-docker.sock network rm games-original-20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock image rm games-original-unprotected:20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock image rm games-original-protected:20261021t033842z
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-frontend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-backend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-keycloak-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-openldap-1 fail2ban-client status ldaps-connections

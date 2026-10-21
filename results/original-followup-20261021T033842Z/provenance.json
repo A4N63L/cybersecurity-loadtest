@@ -1,0 +1,21 @@
+{
+  "extracted_at_utc": "2026-10-21T03:38:44.148707+00:00",
+  "archive": "fail2ban-ddos.zip",
+  "archive_sha256": "402de74a027c9b36d5d19e67c86ae252df865cb85b296ba9f1053eb5af75d3df",
+  "member": "attacker/flood.py",
+  "original_sha256": "48189b9442150d04c1771d83df3cf57eed3048536e2f44dba7fe17cca9d35434",
+  "original_bytes": 5662,
+  "committed_original_path": "reference/attacker/flood.py",
+  "content_modified": false,
+  "temporary_victim_files_sha256": {
+    "victim-protected/Dockerfile": "b2c649bdd62c74d3df5229c2255077041c969054350a3376f51554c7d8fd6c5d",
+    "victim-protected/jail.local": "d9b5d8d2ba530b95cdca42f7d017dfe9f02c8d15aaca64574c6afc74b646bd54",
+    "victim-protected/nginx.conf": "b288862eb8a8c393666dd907fb6244ff17c0d269045f61839654c30378dbc9b0",
+    "victim-protected/filter-http-flood.conf": "57e5e3f00cf9dc3387d5149ab037404f3ccbf5cc788730f30c423a3ed212217f",
+    "victim-protected/entrypoint.sh": "b6bada621f2dd0249191b68c0e83d7fd71b301e39d4806edba68c15325d5d990",
+    "victim-protected/site/index.html": "805efe949e6b85684348d330f3f7c18d4ce3557936c492c805fcfa92ffeb9c9d",
+    "victim-unprotected/Dockerfile": "e57a4ff0b710178dccdded1389ebe7055b9d12fbd399d51301ebe028e307c255",
+    "victim-unprotected/nginx.conf": "b288862eb8a8c393666dd907fb6244ff17c0d269045f61839654c30378dbc9b0",
+    "victim-unprotected/site/index.html": "ca9cf35d290c4dae3db4669efadc7c491a08c03cdca7698441573fc57c922a3d"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "protected_jail_status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t1\n|  |- Total failed:\t1\n|  `- File list:\t/var/log/nginx/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n",
+  "protected_iptables_rules": "-P INPUT ACCEPT\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n",
+  "protected_firewall_counters": null,
+  "new_ban_events_for_attacker": [],
+  "attacker_access_log_status_counts": {
+    "200": 1
+  },
+  "attacker_socket_ip_observed": true,
+  "other_client": {
+    "name": "victim-unprotected",
+    "ip": "172.30.240.11",
+    "protected_http_spider_exit_code": 0,
+    "available": true
+  }
+}

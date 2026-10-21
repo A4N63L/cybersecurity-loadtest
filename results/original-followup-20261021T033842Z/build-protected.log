@@ -1,0 +1,145 @@
+time="2026-10-20T21:38:44-06:00" level=warning msg="COMPOSE_BAKE=false is deprecated, support for internal compose builder will be removed in next release"
+#0 building with "default" instance using docker driver
+
+#1 [victim-protected internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 401B 0.0s done
+#1 DONE 0.8s
+
+#2 [victim-protected internal] load metadata for docker.io/library/nginx:1.27-alpine
+#2 DONE 7.0s
+
+#3 [victim-protected internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 1.1s
+
+#4 [victim-protected internal] load build context
+#4 DONE 0.0s
+
+#5 [victim-protected 1/8] FROM docker.io/library/nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+#5 resolve docker.io/library/nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+#5 resolve docker.io/library/nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10 0.3s done
+#5 sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10 10.33kB / 10.33kB done
+#5 sha256:62223d644fa234c3a1cc785ee14242ec47a77364226f1c811d2f669f96dc2ac8 2.50kB / 2.50kB done
+#5 sha256:6769dc3a703c719c1d2756bda113659be28ae16cf0da58dd5fd823d6b9a050ea 10.79kB / 10.79kB done
+#5 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0B / 3.64MB 0.5s
+#5 ...
+
+#4 [victim-protected internal] load build context
+#4 transferring context: 2.58kB done
+#4 DONE 1.5s
+
+#5 [victim-protected 1/8] FROM docker.io/library/nginx:1.27-alpine@sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10
+#5 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 2.10MB / 3.64MB 1.2s
+#5 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB 1.4s
+#5 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870
+#5 sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 3.64MB / 3.64MB 5.0s done
+#5 extracting sha256:f18232174bc91741fdf3da96d85011092101a032a93a388b79e99e69c2d5c870 0.5s done
+#5 sha256:61ca4f733c802afd9e05a32f0de0361b6d713b8b53292dc15fb093229f648674 0B / 1.79MB 5.8s
+#5 sha256:61ca4f733c802afd9e05a32f0de0361b6d713b8b53292dc15fb093229f648674 1.79MB / 1.79MB 6.2s
+#5 sha256:61ca4f733c802afd9e05a32f0de0361b6d713b8b53292dc15fb093229f648674 1.79MB / 1.79MB 8.0s done
+#5 extracting sha256:61ca4f733c802afd9e05a32f0de0361b6d713b8b53292dc15fb093229f648674
+#5 sha256:b464cfdf2a6319875aeb27359ec549790ce14d8214fcb16ef915e4530e5ed235 0B / 629B 8.6s
+#5 extracting sha256:61ca4f733c802afd9e05a32f0de0361b6d713b8b53292dc15fb093229f648674 0.2s done
+#5 sha256:b464cfdf2a6319875aeb27359ec549790ce14d8214fcb16ef915e4530e5ed235 629B / 629B 8.8s
+#5 sha256:b464cfdf2a6319875aeb27359ec549790ce14d8214fcb16ef915e4530e5ed235 629B / 629B 9.1s done
+#5 sha256:d7e5070240863957ebb0b5a44a5729963c3462666baa2947d00628cb5f2d5773 0B / 955B 12.5s
+#5 extracting sha256:b464cfdf2a6319875aeb27359ec549790ce14d8214fcb16ef915e4530e5ed235 done
+#5 sha256:d7e5070240863957ebb0b5a44a5729963c3462666baa2947d00628cb5f2d5773 955B / 955B 12.8s
+#5 sha256:d7e5070240863957ebb0b5a44a5729963c3462666baa2947d00628cb5f2d5773 955B / 955B 13.1s done
+#5 extracting sha256:d7e5070240863957ebb0b5a44a5729963c3462666baa2947d00628cb5f2d5773
+#5 extracting sha256:d7e5070240863957ebb0b5a44a5729963c3462666baa2947d00628cb5f2d5773 done
+#5 sha256:81bd8ed7ec6789b0cb7f1b47ee731c522f6dba83201ec73cd6bca1350f582948 0B / 402B 13.8s
+#5 sha256:81bd8ed7ec6789b0cb7f1b47ee731c522f6dba83201ec73cd6bca1350f582948 402B / 402B 13.9s
+#5 sha256:81bd8ed7ec6789b0cb7f1b47ee731c522f6dba83201ec73cd6bca1350f582948 402B / 402B 14.6s done
+#5 sha256:197eb75867ef4fcecd4724f17b0972ab0489436860a594a9445f8eaff8155053 0B / 1.21kB 15.0s
+#5 sha256:197eb75867ef4fcecd4724f17b0972ab0489436860a594a9445f8eaff8155053 1.21kB / 1.21kB 15.3s
+#5 extracting sha256:81bd8ed7ec6789b0cb7f1b47ee731c522f6dba83201ec73cd6bca1350f582948 done
+#5 sha256:197eb75867ef4fcecd4724f17b0972ab0489436860a594a9445f8eaff8155053 1.21kB / 1.21kB 15.5s done
+#5 extracting sha256:197eb75867ef4fcecd4724f17b0972ab0489436860a594a9445f8eaff8155053
+#5 extracting sha256:197eb75867ef4fcecd4724f17b0972ab0489436860a594a9445f8eaff8155053 done
+#5 sha256:34a64644b756511a2e217f0508e11d1a572085d66cd6dc9a555a082ad49a3102 0B / 1.40kB 16.0s
+#5 sha256:34a64644b756511a2e217f0508e11d1a572085d66cd6dc9a555a082ad49a3102 1.40kB / 1.40kB 16.2s
+#5 sha256:34a64644b756511a2e217f0508e11d1a572085d66cd6dc9a555a082ad49a3102 1.40kB / 1.40kB 16.2s done
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 0B / 15.52MB 16.8s
+#5 extracting sha256:34a64644b756511a2e217f0508e11d1a572085d66cd6dc9a555a082ad49a3102
+#5 extracting sha256:34a64644b756511a2e217f0508e11d1a572085d66cd6dc9a555a082ad49a3102 done
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 1.05MB / 15.52MB 17.2s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 5.21MB / 15.52MB 17.4s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 9.44MB / 15.52MB 17.7s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 11.53MB / 15.52MB 17.9s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 15.52MB / 15.52MB 18.2s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 15.52MB / 15.52MB 23.3s
+#5 sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 15.52MB / 15.52MB 24.1s done
+#5 extracting sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d
+#5 extracting sha256:39c2ddfd6010082a4a646e7ca44e95aca9bf3eaebc00f17f7ccc2954004f2a7d 1.3s done
+#5 DONE 32.6s
+
+#6 [victim-protected 2/8] RUN apk add --no-cache fail2ban bash iptables iproute2
+#6 2.293 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+#6 3.009 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+#6 3.721 (1/29) Installing readline (8.2.13-r0)
+#6 3.875 (2/29) Installing bash (5.2.37-r0)
+#6 4.130 Executing bash-5.2.37-r0.post-install
+#6 4.148 (3/29) Upgrading libexpat (2.7.0-r0 -> 2.9.0-r0)
+#6 4.217 (4/29) Installing libffi (3.4.7-r0)
+#6 4.339 (5/29) Installing gdbm (1.24-r0)
+#6 4.406 (6/29) Installing libgcc (14.2.0-r4)
+#6 4.531 (7/29) Installing libstdc++ (14.2.0-r4)
+#6 5.037 (8/29) Installing mpdecimal (4.0.0-r0)
+#6 5.140 (9/29) Installing libpanelw (6.5_p20241006-r3)
+#6 5.209 (10/29) Installing sqlite-libs (3.48.0-r4)
+#6 5.632 (11/29) Installing python3 (3.12.15-r0)
+#6 7.694 (12/29) Installing python3-pycache-pyc0 (3.12.15-r0)
+#6 8.405 (13/29) Installing pyc (3.12.15-r0)
+#6 8.405 (14/29) Installing libmnl (1.0.5-r2)
+#6 8.466 (15/29) Installing libnftnl (1.2.8-r0)
+#6 8.591 (16/29) Installing libxtables (1.8.11-r1)
+#6 8.655 (17/29) Installing iptables (1.8.11-r1)
+#6 22.62 (18/29) Installing acl-libs (2.3.2-r1)
+#6 22.69 (19/29) Installing popt (1.19-r4)
+#6 22.76 (20/29) Installing logrotate (3.21.0-r1)
+#6 23.18 (21/29) Installing fail2ban-pyc (1.1.0-r2)
+#6 23.73 (22/29) Installing python3-pyc (3.12.15-r0)
+#6 23.73 (23/29) Installing fail2ban (1.1.0-r2)
+#6 36.73 (24/29) Installing libcap2 (2.78-r0)
+#6 36.80 (25/29) Installing libelf (0.191-r0)
+#6 36.89 (26/29) Installing iproute2-minimal (6.11.0-r0)
+#6 68.22 (27/29) Installing iproute2-tc (6.11.0-r0)
+#6 68.44 (28/29) Installing iproute2-ss (6.11.0-r0)
+#6 68.53 (29/29) Installing iproute2 (6.11.0-r0)
+#6 68.67 Executing iproute2-6.11.0-r0.post-install
+#6 68.68 Executing busybox-1.37.0-r12.trigger
+#6 69.32 OK: 90 MiB in 96 packages
+#6 DONE 73.4s
+
+#7 [victim-protected 3/8] COPY nginx.conf /etc/nginx/nginx.conf
+#7 DONE 4.4s
+
+#8 [victim-protected 4/8] COPY site/ /usr/share/nginx/html/
+#8 DONE 5.0s
+
+#9 [victim-protected 5/8] COPY jail.local /etc/fail2ban/jail.local
+#9 DONE 2.2s
+
+#10 [victim-protected 6/8] COPY filter-http-flood.conf /etc/fail2ban/filter.d/http-flood.conf
+#10 DONE 2.5s
+
+#11 [victim-protected 7/8] COPY entrypoint.sh /entrypoint.sh
+#11 DONE 1.8s
+
+#12 [victim-protected 8/8] RUN chmod +x /entrypoint.sh
+#12 DONE 1.3s
+
+#13 [victim-protected] exporting to image
+#13 exporting layers
+#13 exporting layers 4.4s done
+#13 writing image sha256:eb891cd04ea8d74008c24bafeffb0325b1df12c706436604ba57553e5c405b16 0.1s done
+#13 naming to docker.io/library/games-original-protected:20261021t033842z
+#13 naming to docker.io/library/games-original-protected:20261021t033842z 0.0s done
+#13 DONE 4.9s
+
+#14 [victim-protected] resolving provenance for metadata file
+#14 DONE 0.0s
+ victim-protected  Built

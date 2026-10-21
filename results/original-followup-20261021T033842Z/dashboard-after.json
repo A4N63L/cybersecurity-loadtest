@@ -1,0 +1,68 @@
+{
+  "at_utc": "2026-10-21T03:42:30.446200+00:00",
+  "containers": {
+    "postgres": {
+      "container_id": "7a1f547a27eb75f0c7797888c3f70d7a2335db46f7469a548d3053ab7d027347",
+      "image_id": "sha256:81bd698b4594e751a3269e4dcd3e03a4a0ec0daf7b72e7aa1abd43cce9887542",
+      "configuration_sha256": "11963537b0839807485d9ec640137ee5f20b32ade498f81b098352b33d5d04ea",
+      "state": "running",
+      "health": "healthy",
+      "restarts": 0
+    },
+    "openldap": {
+      "container_id": "4ca1db9e55682e3086b5b628cd0bb59087c871f9044aa8c3783dafcf1a047550",
+      "image_id": "sha256:27aabee4d800a9883d3d9463f7dc006c31267b8a6a96891641a25447dea93f30",
+      "configuration_sha256": "98cba5a0ed39f5b226e1d6c45fa53d0764965dac1d7743407171ad7333f605a4",
+      "state": "running",
+      "health": "healthy",
+      "restarts": 0
+    },
+    "backend": {
+      "container_id": "7633b00b3176b3931d31860828a68ab7c43e85b872cace5c2e3985365b79a27c",
+      "image_id": "sha256:e4d4ffd4a50d794538d58ca1b26e6290b1fbdcd314194059592de93254aca5ba",
+      "configuration_sha256": "86ed3a69f3788b4e0ae7a9163477cfde33dcb7be5c69b1e999b96054bfdaed9f",
+      "state": "running",
+      "health": "healthy",
+      "restarts": 0
+    },
+    "keycloak": {
+      "container_id": "81a6cb0cc453784598208ebe230b11bd4b738a698b4942f5ef6ee79e6b154859",
+      "image_id": "sha256:2aa4f1ddc0886ef4abb75e6c522c6bfce6b4b81b01ddde89065096f406892b8d",
+      "configuration_sha256": "1726e11afd1862947d19df784ba93f57cc384a032852006121f27e5c8f3d2a4e",
+      "state": "running",
+      "health": "healthy",
+      "restarts": 0
+    },
+    "frontend": {
+      "container_id": "a3e54ffb4b5a5e54fab0df43050dc2fbb5b7fd62510fd8d39e41172912b1c611",
+      "image_id": "sha256:97579ddbebb374759076da1952ed384be81cdef17b958f5667242a128df9b776",
+      "configuration_sha256": "808c376e2851c3475e82d613061ff378740ce06dca97b8e509d92ddd2d51981a",
+      "state": "running",
+      "health": "healthy",
+      "restarts": 0
+    }
+  },
+  "same_container_image_and_configuration": true,
+  "jails": {
+    "frontend": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t1\n|  |- Total failed:\t10\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "backend": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "keycloak": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/opt/keycloak/data/log/keycloak-http-access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "openldap": {
+      "jail": "ldaps-connections",
+      "active": true,
+      "status": "Status for the jail: ldaps-connections\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    }
+  }
+}

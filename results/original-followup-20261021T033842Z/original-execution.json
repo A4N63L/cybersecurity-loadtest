@@ -1,0 +1,39 @@
+{
+  "started_at_utc": "2026-10-21T03:41:39.712734+00:00",
+  "ended_at_utc": "2026-10-21T03:42:02.882472+00:00",
+  "elapsed_s": 23.171651,
+  "argv": [
+    "docker",
+    "--host",
+    "unix:///tmp/opencode/games-docker.sock",
+    "exec",
+    "-e",
+    "DURATION=10",
+    "-e",
+    "CONCURRENCY=3",
+    "-e",
+    "REQUESTS_PER_SECOND=20",
+    "games-original-20261021t033842z-attacker",
+    "python3",
+    "/flood.py"
+  ],
+  "exit_code": 0,
+  "original_sha256_before_and_after": "48189b9442150d04c1771d83df3cf57eed3048536e2f44dba7fe17cca9d35434",
+  "target_order_observed": [
+    "victim-protected",
+    "victim-unprotected"
+  ],
+  "results": {
+    "victim-protected": {
+      "completed_as_reported": 87,
+      "http_200": 64,
+      "non_200_aggregate_not_all_proven_bans": 23
+    },
+    "victim-unprotected": {
+      "completed_as_reported": 200,
+      "http_200": 200,
+      "non_200_aggregate_not_all_proven_bans": 0
+    }
+  },
+  "interpretation": "Original combines non-200 HTTP and transport failures; no per-error attribution is available from its summary."
+}

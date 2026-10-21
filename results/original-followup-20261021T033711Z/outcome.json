@@ -1,0 +1,9 @@
+{
+  "phase": "preparation_only",
+  "original_executed": false,
+  "adapted_executed": false,
+  "temporary_images_built": false,
+  "reason": "The direct Docker CLI selected the legacy builder and rejected --progress before building. The preparation helper was changed to the existing Docker Compose build mechanism, without editing teacher sources or dashboard images.",
+  "original_was_extracted_and_hashed": true,
+  "cleanup_and_dashboard_evidence": ["cleanup.json", "dashboard-after.json"]
+}

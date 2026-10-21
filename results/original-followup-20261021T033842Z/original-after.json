@@ -1,0 +1,18 @@
+{
+  "protected_jail_status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t68\n|  `- File list:\t/var/log/nginx/access.log\n`- Actions\n   |- Currently banned:\t1\n   |- Total banned:\t1\n   `- Banned IP list:\t172.30.240.20\n",
+  "protected_iptables_rules": "-P INPUT ACCEPT\n-P FORWARD ACCEPT\n-P OUTPUT ACCEPT\n-N f2b-http-flood\n-A INPUT -p tcp -j f2b-http-flood\n-A f2b-http-flood -s 172.30.240.20/32 -j REJECT --reject-with icmp-port-unreachable\n-A f2b-http-flood -j RETURN\n",
+  "protected_firewall_counters": "Chain f2b-http-flood (1 references)\n    pkts      bytes target     prot opt in     out     source               destination         \n      35     2100 REJECT     all  --  *      *       172.30.240.20        0.0.0.0/0            reject-with icmp-port-unreachable\n       0        0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0           \n",
+  "new_ban_events_for_attacker": [
+    "2026-10-21 03:41:44,196 fail2ban.actions        [24]: NOTICE  [http-flood] Ban 172.30.240.20"
+  ],
+  "attacker_access_log_status_counts": {
+    "200": 65
+  },
+  "attacker_socket_ip_observed": true,
+  "other_client": {
+    "name": "victim-unprotected",
+    "ip": "172.30.240.11",
+    "protected_http_spider_exit_code": 0,
+    "available": true
+  }
+}

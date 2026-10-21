@@ -1,0 +1,34 @@
+{
+  "docker_host": "unix:///tmp/opencode/games-docker.sock",
+  "network_name": "games-original-20261021t033842z",
+  "subnet": "172.30.240.0/24",
+  "internal": true,
+  "host_route_validation": {
+    "nondefault_ipv4_routes_checked": 184,
+    "overlap_found": false,
+    "sanitization": "Individual host/VPN/LAN route details omitted; only the validation result is published."
+  },
+  "no_dashboard_network_attachment": true,
+  "ports_published_on_host": [],
+  "destinations_in_original_order": [
+    "http://victim-protected:80/",
+    "http://victim-unprotected:80/"
+  ],
+  "environment": {
+    "DURATION": "10",
+    "CONCURRENCY": "3",
+    "REQUESTS_PER_SECOND": "20"
+  },
+  "protected_image": "games-original-protected:20261021t033842z",
+  "unprotected_image": "games-original-unprotected:20261021t033842z",
+  "client_image": "python:3.12-slim",
+  "client_python_version": "Python 3.12.15",
+  "runtime_limits": {
+    "protected": "256 MiB / 1 CPU",
+    "unprotected": "96 MiB / 0.5 CPU",
+    "attacker": "128 MiB / 0.5 CPU"
+  },
+  "teacher_victim_dockerfiles_and_configs_modified": false,
+  "client_difference_from_zip": "Existing Python 3.12 slim instead of python:3.12-alpine + curl; original uses only stdlib.",
+  "teacher_subnet_replaced_to_avoid_collision": "172.29.0.0/24 -> 172.30.240.0/24"
+}

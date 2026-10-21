@@ -1,0 +1,27 @@
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1 --format '{{json .State}}'
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-frontend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-backend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-keycloak-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-openldap-1 fail2ban-client status ldaps-connections
+docker --host unix:///tmp/opencode/games-docker.sock network ls -q
+docker --host unix:///tmp/opencode/games-docker.sock network inspect 4f8973814c18 67d0b3bd703f 03b9401ef577
+ip -j route show table all
+docker --host unix:///tmp/opencode/games-docker.sock build --network host --progress plain -t games-original-protected:20261021t033711z /tmp/opencode/original-fail2ban-62j5b75d/victim-protected
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-postgres-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-openldap-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-backend-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-keycloak-1
+docker --host unix:///tmp/opencode/games-docker.sock inspect ciber-p1-games-frontend-1
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-frontend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-backend-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-keycloak-1 fail2ban-client status http-flood
+docker --host unix:///tmp/opencode/games-docker.sock exec ciber-p1-games-openldap-1 fail2ban-client status ldaps-connections

@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-10-21T03:42:07.738100+00:00",
+  "ended_at_utc": "2026-10-21T03:42:14.062615+00:00",
+  "argv": [
+    "docker",
+    "--host",
+    "unix:///tmp/opencode/games-docker.sock",
+    "exec",
+    "games-original-20261021t033842z-adapted",
+    "python3",
+    "/work/flood.py",
+    "frontend",
+    "4200",
+    "--scheme",
+    "http",
+    "--path",
+    "/",
+    "--duration",
+    "5",
+    "--concurrency",
+    "1",
+    "--rps",
+    "2",
+    "--timeout",
+    "1"
+  ],
+  "exit_code": 0,
+  "source_ip": "172.29.0.7",
+  "jail_left_active_without_exemption": true,
+  "adapted_sha256": "f94586119e787e7435c3970bfc236eb2f0684e7c23e3d1d15fdd043f5371baa4",
+  "purpose": "Brief functional check after the original, not a repeat of capacity benchmarks"
+}

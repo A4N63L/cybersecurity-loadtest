@@ -1,0 +1,18 @@
+{
+  "services": {
+    "victim-protected": {
+      "image": "games-original-protected:20261021t033842z",
+      "build": {
+        "context": "../../reference/victim-protected",
+        "network": "host"
+      }
+    },
+    "victim-unprotected": {
+      "image": "games-original-unprotected:20261021t033842z",
+      "build": {
+        "context": "../../reference/victim-unprotected",
+        "network": "host"
+      }
+    }
+  }
+}

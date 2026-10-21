@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-10-21T03:37:11.515435+00:00",
+  "existing_containers_started": [],
+  "recreated_or_rebuilt": false,
+  "jails_before_original": {
+    "frontend": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "backend": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "keycloak": {
+      "jail": "http-flood",
+      "active": true,
+      "status": "Status for the jail: http-flood\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/opt/keycloak/data/log/keycloak-http-access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    },
+    "openldap": {
+      "jail": "ldaps-connections",
+      "active": true,
+      "status": "Status for the jail: ldaps-connections\n|- Filter\n|  |- Currently failed:\t0\n|  |- Total failed:\t0\n|  `- File list:\t/var/log/security/access.log\n`- Actions\n   |- Currently banned:\t0\n   |- Total banned:\t0\n   `- Banned IP list:\t\n"
+    }
+  }
+}

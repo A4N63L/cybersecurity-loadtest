@@ -1,0 +1,9 @@
+{
+  "phase": "preparation_only",
+  "original_executed": false,
+  "adapted_executed": false,
+  "temporary_images_built": false,
+  "reason": "Read-only network validation encountered null IPAM.Config on a non-bridge network. Preparation stopped before extraction/build/load; the helper was corrected to handle null metadata.",
+  "dashboard_action": "Started only the existing stopped containers; their IDs, image IDs and configuration fingerprints remained unchanged.",
+  "cleanup_and_dashboard_evidence": ["cleanup.json", "dashboard-after.json"]
+}

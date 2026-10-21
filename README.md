@@ -8,18 +8,23 @@ de **Python 3.10+**. No necesita pip ni acceso a credenciales.
 Repositorio publicado: https://github.com/A4N63L/cybersecurity-loadtest.
 El código y los resultados saneados de `results/` son versionables.
 
-## Contraste con el original y ejecución previa pendiente
+## Ejecución posterior del original y límite histórico
 
-**No se ha encontrado evidencia verificable de una ejecución del script original
-antes de modificarlo. Este requisito del maestro queda PENDIENTE de acreditar.**
-Leer el ZIP, comparar código o ejecutar las comprobaciones del generador adaptado
-no demuestra esa ejecución original ni el orden exigido.
+**El original intacto se ejecutó el 21 de octubre de 2026, y después se comprobó
+brevemente el adaptado.** Las evidencias están en
+[original-followup-20261021T033842Z/FOLLOWUP.md](results/original-followup-20261021T033842Z/FOLLOWUP.md).
+Se conserva el archivo extraído sin editar en `reference/attacker/flood.py`, con
+SHA-256 `48189b9442150d04c1771d83df3cf57eed3048536e2f44dba7fe17cca9d35434`.
+
+**Sigue sin acreditarse una ejecución del original anterior al desarrollo de la
+adaptación.** La nueva evidencia es una subsanación posterior, no prueba de ese
+orden histórico. Leer el ZIP o comparar código tampoco lo habría demostrado.
 
 La campaña conservada en `results/20261020T040045Z/` corresponde a la **versión
 adaptada**, entre 04:00:45 y 04:06:10 UTC del 20 de octubre de 2026. Su campo
 `complete=true` significa que terminó esa campaña, no que se haya acreditado la
-ejecución previa del original. No se añaden resultados del original ni fechas
-retrospectivas. El contraste completo está en
+ejecución previa del original. Sus cifras y fechas siguen intactas; la ejecución
+posterior se guarda en otro directorio. El contraste completo está en
 [CONTRASTE-ENUNCIADO.md](https://github.com/A4N63L/cybersecurity-backend/blob/main/CONTRASTE-ENUNCIADO.md).
 
 | Aspecto | `attacker/flood.py` original del ZIP | Adaptación entregada |
@@ -36,20 +41,63 @@ Se mantienen del original el patrón de pool de trabajadores, plazo fijo, evento
 de parada y limitador global. `run_campaign.py` añade la observación de recursos,
 el cliente B y las excepciones temporales de Fail2Ban; no forma parte del original.
 
-**Subsanación mínima, todavía no realizada:** ejecutar una copia intacta del
-original en un entorno donde ambos nombres fijos respondan en el puerto 80,
-registrando hash, comando, fecha y stdout. Puede usar sus variables de entorno
-para una ejecución breve sin cambiar el archivo:
+### Subsanación realizada el 21 de octubre de 2026 UTC
+
+Se construyeron únicamente las dos víctimas temporales con sus Dockerfiles,
+Nginx, filtro, jail, entrypoint y sitios del ZIP sin editar. Respondieron como
+`victim-protected` y `victim-unprotected` en HTTP/80, en la red interna independiente
+`172.30.240.0/24`, sin publicar puertos. El cliente reutilizó `python:3.12-slim`
+en vez del cliente Alpine/curl del ZIP: el original solo usa la biblioteca estándar.
+No se reconstruyeron imágenes del dashboard.
+
+Comando efectivamente ejecutado, conservado también en `original-execution.json`:
 
 ```bash
-# Propuesta pendiente, NO ejecutada; requiere los dos destinos del original.
-DURATION=10 CONCURRENCY=1 REQUESTS_PER_SECOND=2 python3 /ruta/a/attacker/flood.py
+docker --host unix:///tmp/opencode/games-docker.sock exec \
+  -e DURATION=10 -e CONCURRENCY=3 -e REQUESTS_PER_SECOND=20 \
+  games-original-20261021t033842z-attacker python3 /flood.py
 ```
 
-Esa ejecución futura no probará que ocurrió antes de la adaptación ya entregada.
-Si se exige acreditar el orden completo, habrá que realizar una nueva secuencia
-documentada original → adaptación y declararla como subsanación posterior.
-No se reconstruyó ni ejecutó el laboratorio del ZIP en esta revisión.
+La emisión se configuró a 10 s por destino, secuenciales; el proceso completo duró
+23,172 s, incluidos arranque y drenaje de conexiones con timeout. Salida literal
+en `original.stdout.txt`:
+
+| Destino, por orden | Intentos contabilizados por el original | HTTP 200 | No-200/fallos agrupados |
+|---|---|---|---|
+| `victim-protected` | 87 | 64 | 23 |
+| `victim-unprotected` | 200 | 200 | 0 |
+
+Se confirmó un Ban de `172.30.240.20` y una regla con 35 paquetes rechazados;
+otro cliente, `172.30.240.11`, siguió accediendo a la víctima protegida. Eso
+demuestra el veto de la IP, **no una atribución individual de los 23 fallos**:
+el original no separa sus errores de transporte ni todos los códigos no-200,
+y paquetes rechazados no equivalen a peticiones HTTP.
+
+Después, a las 03:42:07 UTC, se lanzó el adaptado en otro cliente conectado solo
+a la red del dashboard, con sus argumentos reales:
+
+```bash
+docker --host unix:///tmp/opencode/games-docker.sock exec \
+  games-original-20261021t033842z-adapted python3 /work/flood.py frontend 4200 \
+  --scheme http --path / --duration 5 --concurrency 1 --rps 2 --timeout 1
+```
+
+Completó 10 HTTP 200, sin errores, en 5,003 s medidos por el generador (1,999 RPS).
+Fue una comprobación breve, **no una repetición de los benchmarks**. Sus tiempos
+y salida están en `adapted-execution.json` y `adapted-result.json`.
+
+Los contenedores indicados en esos comandos históricos ya fueron eliminados,
+junto con las dos etiquetas de imagen y la red temporal. Las cuatro jails del
+dashboard quedaron activas, sin excepciones nuevas, y se conservaron sus IDs,
+imágenes y huellas de configuración. El dashboard se encontró detenido tras
+reiniciar el daemon y solo se arrancaron sus contenedores existentes.
+
+Dos preparaciones previas abortaron **sin ejecutar carga**; sus `outcome.json`
+quedan en los directorios `original-followup-20261021T033512Z` y
+`original-followup-20261021T033711Z`. No se presentan como ejecuciones del original.
+
+La diferencia histórica permanece: esta ejecución ocurrió después del desarrollo.
+La aceptación de la subsanación respecto a ese orden literal corresponde al maestro.
 
 ## Archivos
 
@@ -59,7 +107,11 @@ No se reconstruyó ni ejecutó el laboratorio del ZIP en esta revisión.
 - `render_results.py`: genera tablas **a partir de JSON reales**, sin estimar cifras.
 - `test_flood.py`: comprobaciones locales de clasificación, presupuesto global e interrupción.
 - `check_restoration.py`: control sin carga HTTP que verifica `finally` y watchdog ante SIGKILL.
+- `reference/`: script y componentes de las víctimas extraídos del ZIP sin editar;
+  se conservan para identificar y reproducir la referencia utilizada.
 - [`results/20261020T040045Z/SUMMARY.md`](results/20261020T040045Z/SUMMARY.md): tablas reales por servicio.
+- [`results/original-followup-20261021T033842Z/`](results/original-followup-20261021T033842Z/FOLLOWUP.md):
+  ejecución posterior del original y comprobación del adaptado, con hashes y limpieza.
 
 ## Instalación y ejecución individual
 
